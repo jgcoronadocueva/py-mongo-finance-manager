@@ -43,7 +43,7 @@ transactions – stores all user transactions:
 
 # Development Environment
 
-Programming Language: Python 3.14
+**Programming Language:** Python 3.14
 
 **Libraries:**
 
