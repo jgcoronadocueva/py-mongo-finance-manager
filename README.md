@@ -15,7 +15,7 @@ How to use the program:
 
 The purpose of this program was to learn how to use MongoDB with Python, continue improving my skills with cloud databases and securely managing user data in a cloud environment.
 
-[Personal Finance Manager in Python tutorial]()
+[Personal Finance Manager in Python tutorial](https://youtu.be/X8x9oYkDviE)
 
 # Cloud Database
 
