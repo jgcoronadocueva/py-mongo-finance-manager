@@ -36,7 +36,7 @@ def run_menu():
         print("7. Logout")
         print("8. Quit")
 
-        choice = input("Choose an option: ").strip()
+        choice = input("Choose an option: ")
 
         if choice == "1":  # Register
             register(
@@ -57,51 +57,43 @@ def run_menu():
 
         elif choice == "3":  # Add Transaction
             payload = require_login()
-            if not payload:
-                continue
-            try:
+            if payload:
                 amount = float(input("Amount: "))
-            except ValueError:
-                print("Invalid amount")
-                continue
-            category = input("Category: ").strip()
-            add_transaction(payload["user_id"], amount, category)
-            print("Transaction added")
+                category = input("Category: ")
+                add_transaction(payload["user_id"], amount, category)
+                print("Transaction added")
 
         elif choice == "4":  # View Transactions
             payload = require_login()
-            if not payload:
-                continue
-            transactions = show_transactions(payload["user_id"])
-            if not transactions:
-                print("No transactions found.")
-            else:
-                for t in transactions:
-                    print(f"{t['_id']} | {t['category']} → ${t['amount']}")
+            if payload:
+                transactions = show_transactions(payload["user_id"])
+                if transactions:
+                    for t in transactions:
+                        print(f"{t['_id']} | {t['category']} → ${t['amount']}")
+                else:
+                    print("No transactions found.")
 
         elif choice == "5":  # Update Transaction
             payload = require_login()
-            if not payload:
-                continue
-            transaction_id = input("Transaction ID: ").strip()
-            amount_input = input("New Amount: ").strip()
-            category_input = input("New Category: ").strip()
-            amount = float(amount_input) if amount_input else None
-            category = category_input if category_input else None
-            if edit_transaction(transaction_id, amount, category):
-                print("Transaction updated")
-            else:
-                print("Nothing updated")
+            if payload:
+                transaction_id = input("Transaction ID: ")
+                amount_input = input("New Amount (leave empty to skip): ")
+                category_input = input("New Category (leave empty to skip): ")
+                amount = float(amount_input) if amount_input else None
+                category = category_input if category_input else None
+                if edit_transaction(transaction_id, amount, category):
+                    print("Transaction updated")
+                else:
+                    print("Nothing updated")
 
         elif choice == "6":  # Delete Transaction
             payload = require_login()
-            if not payload:
-                continue
-            transaction_id = input("Transaction ID: ").strip()
-            if remove_transaction(transaction_id):
-                print("Transaction deleted")
-            else:
-                print("Transaction not found")
+            if payload:
+                transaction_id = input("Transaction ID: ")
+                if remove_transaction(transaction_id):
+                    print("Transaction deleted")
+                else:
+                    print("Transaction not found")
 
         elif choice == "7":  # Logout
             current_token = None
@@ -112,4 +104,4 @@ def run_menu():
             break
 
         else:
-            print("Invalid option, try again")
+            print("Invalid option")
