@@ -1,38 +1,75 @@
 # Overview
 
-{Important! Do not say in this section that this is college assignment. Talk about what you are trying to accomplish as a software engineer to further your learning.}
+This project is a Personal Finance Manager designed to help users track and manage their expenses, budgets, and financial categories. The software allows users to create accounts, log in securely, add income or expense transactions, and set spending limits by category.
 
-{Provide a description of the software that you wrote and how it integrates with a Cloud Database. Describe how to use your program.}
+The program integrates with MongoDB Atlas to securely store user data, categories, budgets, and transactions. Users interact with the program via a command-line interface that shows a menu with multiple options.
 
-{Describe your purpose for writing this software.}
+How to use the program:
 
-{Provide a link to your YouTube demonstration. It should be a 4-5 minute demo of the software running, a walkthrough of the code, and a view of the cloud database.}
+- Run `pip install -r requirements.txt` from your terminal to get all required libraries.
+- Run the main script from your terminal: `python main.py`
+- Register an account with a username, password, and personal info.
+- Log in to receive a JWT token for authentication.
+- Add, view, edit, or delete transactions linked to categories.
+- Log out to invalidate the current session.
 
-[Software Demo Video](http://youtube.link.goes.here)
+The purpose of this program was to learn how to use MongoDB with Python, continue improving my skills with cloud databases and securely managing user data in a cloud environment.
+
+[Personal Finance Manager in Python tutorial]()
 
 # Cloud Database
 
-{Describe the cloud database you are using.}
+This project uses MongoDB Atlas, a cloud-hosted NoSQL database service.
 
-{Describe the structure of the database that you created.}
+**Database Structure:**
+
+users – stores registered user accounts:
+
+- username, passwordHash, firstName, lastName, email
+
+categories – stores financial categories per user:
+
+- userId, name, type
+
+budgets – stores spending limits per category:
+
+- userId, category, limit
+
+transactions – stores all user transactions:
+
+- userId, amount, category
+
+**Note:** All collections are linked to a user via userId, making it easy to query data per user.
 
 # Development Environment
 
-{Describe the tools that you used to develop the software}
+Programming Language: Python 3.14
 
-{Describe the programming language that you used and any libraries.}
+**Libraries:**
+
+- `pymongo` for MongoDB interactions
+- `bcrypt` for hashing passwords
+- `jwt` for creating and verifying authentication tokens
+- `python`-dotenv for environment variable management
+- `bson` for handling MongoDB ObjectId
+
+**Tools:**
+
+- IDE: Visual Studio Code
+- Database: MongoDB Atlas
 
 # Useful Websites
 
-{Make a list of websites that you found helpful in this project}
-
-- [How to Create and Use .env Files in Python](http://url.link.goes.here)
-- [Connecting MongoDB to Python](http://url.link.goes.here)
-- [How to Create and Use .env Files in Python](http://url.link.goes.here)
-- [Connecting MongoDB to Python](http://url.link.goes.here)
+- [How to Create and Use .env Files in Python](https://www.geeksforgeeks.org/python/how-to-create-and-use-env-files-in-python/)
+- [Connecting MongoDB to Python](https://www.datacamp.com/de/tutorial/connecting-mongodb-to-python)
+- [Hashing Passwords in Python with BCrypt](https://www.geeksforgeeks.org/python/hashing-passwords-in-python-with-bcrypt/)
+- [Understanding JWT: A Beginner-Friendly Guide with Python](https://maazbinmustaqeem.medium.com/understanding-jwt-a-beginner-friendly-guide-with-python-71b29953f3ab)
+- [Python and MongoDB: Connecting to NoSQL Databases](https://realpython.com/introduction-to-mongodb-and-python/)
+- [PyMongo Driver - MongoDB Docs](https://www.mongodb.com/docs/languages/python/pymongo-driver/current/crud/)
 
 # Future Work
 
-- Expanding the project into a REST or GraphQL API
-- Implementing role-based access control
-- Improving error handling
+- Expand to a REST or GraphQL API
+- Implement role-based access control
+- Improve error handling and validation
+- Include reports and visualizations
